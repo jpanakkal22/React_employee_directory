@@ -13,7 +13,7 @@
 * [Questions](#questions)
 
 ## Installation
-To begin installation, create a GitHub repository and clone it to your code editor. Run npx create-react-app (app name) to create the React application. Cd into the application and npm start to run the application. Install npm package 'axios'dir to make API call for user data. 
+To begin installation, create a GitHub repository and clone it to your code editor. Run npx create-react-app (app name) to create the React application. Cd into the application and npm start to run the application. Install the required dependencies per package.json or run npm install from command line.  
 
 ## Usage
 
