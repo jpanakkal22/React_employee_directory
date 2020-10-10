@@ -18,27 +18,30 @@ class App extends Component {
       .catch(err => console.log(err));       
   }
 
-  //  handleClick(event) {
-  //   console.log(event.target);
-  // }
-  handleClick = (arg) => {
-    this.setState(state => {
-      const newArray = state.filteredResults.filter(result => {
-        return result.gender === arg;
-      })
-      console.log(newArray);     
-      return {filteredResults: newArray};
-      
-    })
-    
+  handleClick = (arg) => {    
+    if(arg === "both"){
+      return this.setState({filteredResults: this.state.result});
+    }
+    else {
+      this.setState(state => {
+        const newArray = state.filteredResults.filter(result => {
+          return result.gender === arg;
+        });
+        return {filteredResults: newArray};      
+      });   
+    }   
   }
   
-  render() {
-        
+  render() {         
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
-        <button onClick={() => this.handleClick("male")}>Male</button>
+        <div className="btn-group" role="group" aria-label="Basic example">
+        <button type="button" className="btn btn-primary" onClick={() => this.handleClick("male")}>Male</button>
+        <button type="button" className="btn btn-secondary" onClick={() => this.handleClick("female")}>Female</button>
+        <button type="button" className="btn btn-success" onClick={() => this.handleClick("both")}>Both</button>
+        </div>
+        
         <table class="table table-striped">
           <thead>
             <tr>
