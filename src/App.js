@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import SortGender from "./components/SortGender";
+
+
 
 class App extends Component {
   // Setting this.state.employee to an empty object
@@ -16,17 +17,28 @@ class App extends Component {
       .then(res => this.setState({ result: res.data.results, filteredResults: res.data.results }))
       .catch(err => console.log(err));       
   }
-  
-  onChangeValue(event) {
-    console.log(event.target.value);
-    // If male is checked, get data where gender === "male"
+
+  //  handleClick(event) {
+  //   console.log(event.target);
+  // }
+  handleClick = (arg) => {
+    this.setState(state => {
+      const newArray = state.filteredResults.filter(result => {
+        return result.gender === arg;
+      })
+      console.log(newArray);     
+      return {filteredResults: newArray};
+      
+    })
+    
   }
+  
   render() {
-    console.log(this.state.result[0]);
+        
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
-        <SortGender onChangeValue={this.onChangeValue}/>
+        <button onClick={() => this.handleClick("male")}>Male</button>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -46,24 +58,10 @@ class App extends Component {
                 <td>{employee.email}</td>
                 <td>{employee.phone}</td>
               </tr>
-
             ))}
           </tbody>
-        </table>
-         
-        
-                
-        {/* {this.state.result.map(employee => ( 
-          <EmployeeCard
-            key= {employee.id.value}
-            name= {`${employee.name.first} ${employee.name.last}`}
-            image= {employee.picture.large}
-            email= {employee.email}
-            phone= {employee.phone}
-          /> 
-        ))}                  */}
-      </Wrapper>
-      
+        </table>       
+      </Wrapper>      
     );
   }
 }
