@@ -31,8 +31,41 @@ class App extends Component {
       });   
     }   
   }
+
+  sortEvent = (arg) => {
+    if(arg === "ascending"){
+      this.setState(state => {
+        const sortArray = state.filteredResults.sort((a, b) => {
+          let x = a.name.last.toLowerCase();
+          let y = b.name.last.toLowerCase();
+    
+          if(x < y) {return -1}
+          if(x > y) {return 1}
+          return 0;
+        });
+        return {filteredResults: sortArray};
+      });
+    }
+    else {
+      this.setState(state => {
+        const sortArray = state.filteredResults.sort((a, b) => {
+          let x = a.name.last.toLowerCase();
+          let y = b.name.last.toLowerCase();
+    
+          if(x > y) {return -1}
+          if(x < y) {return 1}
+          return 0;
+        });
+        return {filteredResults: sortArray};
+      });
+    }
+    
+  }   
+    
   
-  render() {         
+  
+  render() {   
+    console.log(this.state.filteredResults[0])      ;
     return (
       <Wrapper>
         <Title>Employee Directory</Title>
@@ -40,6 +73,10 @@ class App extends Component {
         <button type="button" className="btn btn-primary" onClick={() => this.handleClick("male")}>Male</button>
         <button type="button" className="btn btn-secondary" onClick={() => this.handleClick("female")}>Female</button>
         <button type="button" className="btn btn-success" onClick={() => this.handleClick("both")}>Both</button>
+        </div>
+        <div>
+        <button type="button" className="btn btn-primary" onClick={() => this.sortEvent("ascending")}>A-Z</button>
+        <button type="button" className="btn btn-secondary" onClick={() => this.sortEvent("desceding")}>Z-A</button>
         </div>
         
         <table class="table table-striped">
