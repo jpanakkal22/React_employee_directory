@@ -3,10 +3,8 @@ import API from "./utils/API";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 
-
-
 class App extends Component {
-  // Setting this.state.employee to an empty object
+  // Set state
   state = {
     result: [],
     filteredResults: []
@@ -18,6 +16,7 @@ class App extends Component {
       .catch(err => console.log(err));       
   }
 
+  // Function to update state based on user clicking male, female or both buttons
   handleClick = (arg) => {    
     if(arg === "both"){
       return this.setState({filteredResults: this.state.result});
@@ -32,13 +31,13 @@ class App extends Component {
     }   
   }
 
+  // Function to sort data by name either ascending or descending
   sortEvent = (arg) => {
     if(arg === "ascending"){
       this.setState(state => {
         const sortArray = state.filteredResults.sort((a, b) => {
           let x = a.name.last.toLowerCase();
-          let y = b.name.last.toLowerCase();
-    
+          let y = b.name.last.toLowerCase();    
           if(x < y) {return -1}
           if(x > y) {return 1}
           return 0;
@@ -50,20 +49,16 @@ class App extends Component {
       this.setState(state => {
         const sortArray = state.filteredResults.sort((a, b) => {
           let x = a.name.last.toLowerCase();
-          let y = b.name.last.toLowerCase();
-    
+          let y = b.name.last.toLowerCase();    
           if(x > y) {return -1}
           if(x < y) {return 1}
           return 0;
         });
         return {filteredResults: sortArray};
       });
-    }
-    
-  }   
-    
-  
-  
+    }    
+  } 
+  // Render UI
   render() {   
     console.log(this.state.filteredResults[0])      ;
     return (
@@ -74,11 +69,10 @@ class App extends Component {
         <button type="button" className="btn btn-secondary" onClick={() => this.handleClick("female")}>Female</button>
         <button type="button" className="btn btn-success" onClick={() => this.handleClick("both")}>Both</button>
         </div>
-        <div>
+        <div>        
         <button type="button" className="btn btn-primary" onClick={() => this.sortEvent("ascending")}>A-Z</button>
         <button type="button" className="btn btn-secondary" onClick={() => this.sortEvent("desceding")}>Z-A</button>
-        </div>
-        
+        </div>        
         <table class="table table-striped">
           <thead>
             <tr>
