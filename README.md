@@ -16,7 +16,7 @@ This application uses React to create an employee directory with the ability to 
 * [Questions](#questions)
 
 ## Installation
-To begin installation, create a GitHub repository and clone it to your code editor. Run npx create-react-app (app name) to create the React application. Cd into the application and npm start to run the application. Install the required dependencies per package.json or run npm install from command line.  
+Clone the repository to your code editor. Run npm install to get the required dependencies, and then npm start to begin the applicaiton.  
 
 ## Usage
 A user can view the directory of people, sort the information by name either ascending or descending, and filter by gender. 
@@ -38,4 +38,4 @@ N/A
 
 You can also contact me at josh_panakkal3122@hotmail.com
 
-Heroku : 
+GitHub Pages: https://jpanakkal22.github.io/React_employee_directory/ 
